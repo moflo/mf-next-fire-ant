@@ -1,5 +1,5 @@
 export default {
-  title: 'PLL-One',
+  title: 'MFNEXTFIREANT',
   description: 'NextJS Landing Page and Admin Template',
   openGraph: {
     type: 'website',

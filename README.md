@@ -32,6 +32,17 @@ cd with-firebase-hosting
 * grab the projects ID from the web consoles URL: `https://console.firebase.google.com/project/<projectId>`
 * update the `.firebaserc` default project ID to the newly created project
 * login to the Firebase CLI tool with `firebase login`
+* create the `credentials/client.js` file with the following syntax:
+    ```bash
+    module.exports = {
+        apiKey: "FIREBASEAPIKEY",
+        authDomain: "your-app.firebaseapp.com",
+        databaseURL: "https://your-app.firebaseio.com",
+        projectId: "your-app",
+        storageBucket: "your-app.appspot.com",
+        messagingSenderId: "FIREBASEMMESSEGINGKEY"
+    }
+    ```
 
 </details>
 
