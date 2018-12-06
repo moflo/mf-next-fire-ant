@@ -52,6 +52,19 @@ export default class firebaseManager {
         return (user != null)
     }
 
+    getUserDetails() {
+        if (!firebase.apps.length) firebase.initializeApp(clientCredentials)
+
+        let user = firebase.auth().currentUser
+
+        let userObj = {
+            name: user.displayName || "MoFlo User",
+            avatarURL: user.photoURL || "https://fillmurray.com/64/64",
+            email: user.email || "demo@moflo.me"
+        }
+
+        return userObj
+    }
 
     prepareDocForCreate = doc => {
         if (!firebase.apps.length) firebase.initializeApp(clientCredentials)
