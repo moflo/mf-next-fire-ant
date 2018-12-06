@@ -2,7 +2,7 @@ import * as React from 'react'
 import Link from 'next/link'
 import { Layout, Menu, Divider, Avatar, Modal, Table } from 'antd';
 import styled from 'styled-components';
-import firebaseConfig from '../credentials/client';
+import firebaseManager from '../lib/firebaseManager'
 
 
 const { Header } = Layout;
@@ -20,7 +20,7 @@ const AvatarWithIcon = styled(Avatar)`
 export default class MFHeader extends React.Component {
   state = {
     visible: false,
-    user: null,
+    user: firebaseManager.sharedInstance.getUserDetails(),
     deploying: false,
     isMoblie: false
   }
@@ -48,25 +48,21 @@ render() {
 
   const menuMode = isMoblie ? 'inline' : 'horizontal';
   
-  const username = user ? user.displayName || user.email : 'loading...';
+  const username = user ? user.name || user.email : 'loading...';
 
   const columns = [{
-    title: 'Project ID',
-    dataIndex: 'projectId',
-    key: 'projectId',
+    title: 'Name',
+    dataIndex: 'name',
+    key: 'name',
   }, {
-    title: 'Auth Domain',
-    dataIndex: 'authDomain',
-    key: 'authDomain',
+    title: 'Email',
+    dataIndex: 'email',
+    key: 'email',
   }, {
-    title: 'Storage Bucket',
-    dataIndex: 'storageBucket',
-    key: 'storageBucket',
-  }, {
-    title: 'Database URL',
-    dataIndex: 'databaseURL',
-    key: 'databaseURL',
-    render: ((text) => <a href={text} target="_blank" rel="noopener noreferrer">{text}</a>),
+    title: 'Avatar URL',
+    dataIndex: 'avatarURL',
+    key: 'avatarURL',
+    render: ((text) => <Avatar src={text} alt="User Avatar" />),
   }];
 
 
@@ -84,7 +80,9 @@ render() {
             </Menu.Item>
             <Divider type="vertical" />
             <Menu.SubMenu title={<span>
-              <AvatarWithIcon style={{color: '#f56a00', backgroundColor: '#fde3cf'}} icon="user" />
+              {user ? <AvatarWithIcon src={user.avatarURL} />
+              : <AvatarWithIcon style={{color: '#f56a00', backgroundColor: '#fde3cf'}} icon="user" />
+              }
               <UserName>{username}</UserName>
               </span>}>
               <Menu.Item key="overview">Overview</Menu.Item>
@@ -93,12 +91,12 @@ render() {
           </Menu>
           <Modal
           width={"80%"}
-          title="Overview Firebase"
+          title="Account Overview"
           visible={this.state.visible}
           onCancel={this.hideOverview}
           footer={null}
         >
-          <Table columns={columns} rowKey="uid" dataSource={[firebaseConfig]} pagination={false} />
+          <Table columns={columns} rowKey="uid" dataSource={[user]} pagination={false} />
         </Modal>
         </Header>
       )
