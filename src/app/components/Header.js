@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Layout, Menu, Divider, Avatar, Modal, Table } from 'antd';
 import styled from 'styled-components';
 import firebaseManager from '../lib/firebaseManager'
+import redirect from "../lib/redirect";
 
 
 const { Header } = Layout;
@@ -28,7 +29,7 @@ export default class MFHeader extends React.Component {
 headerMenuOnClick = (menuItem) => {
   const {history} = this.props;
   if(menuItem.key === 'logout') {
-        history.push('/');
+    redirect('/');
   } else if(menuItem.key === "overview") {
     this.setState({
       visible: true
