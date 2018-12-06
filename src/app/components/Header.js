@@ -68,17 +68,10 @@ render() {
 
   return (
     <Header style={{ background: '#fff', padding: 0, paddingRight: 20, height: 80 }}>
-        <Menu mode={menuMode} defaultSelectedKeys={['home']} id="nav" key="nav" onClick={this.headerMenuOnClick} >
+        <Menu mode={menuMode} defaultSelectedKeys={['help']} id="nav" key="nav" onClick={this.headerMenuOnClick} >
             <Menu.Item key="home">
-            <Link href='/'> HOME </Link>
+            <Link href='/'> Help </Link>
             </Menu.Item>
-            <Menu.Item key="about">
-            <Link href='/about'> ABOUT </Link>
-            </Menu.Item>
-            <Menu.Item key="dashboard">
-            <Link href='/dashboard'> DASHBOARD </Link>
-            </Menu.Item>
-            <Divider type="vertical" />
             <Menu.SubMenu title={<span>
               {user ? <AvatarWithIcon src={user.avatarURL} />
               : <AvatarWithIcon style={{color: '#f56a00', backgroundColor: '#fde3cf'}} icon="user" />
