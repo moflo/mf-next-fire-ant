@@ -84,14 +84,10 @@ npm run clean
 </details>
 
 <details>
-<summary><b>Bitbucket repo</b></summary>
+<summary><b>Ant Design landing page</b></summary>
 
-Clone from Bitbucket repo
+Copy the components of the Ant Design landing page from the online (design tool)[https://landing.ant.design] and copy to the `landing` directory.
 
-```
-git remote add bitbucket git@bitbucket.org:mobileflowllc/mf-next-fire-ant.git
-git push -u bitbucket master
-```
 </details>
 
 
@@ -109,15 +105,10 @@ The directory structure in the `src/app` folder is as follows:
 
 ```bash
 |____landing
-| |____Header.js
 | |____Home.js
-| |____Page1.js
 | |____static
 | | |____style.js
 | | |____default.less
-| | |____home.less
-| | |____footer.less
-| | |____header.less
 | | |____responsive.less
 | |____Banner.js
 |____next.config.js
